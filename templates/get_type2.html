@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/post_css.css' %}" />
+    <meta charset="UTF-8">
+    <title>GET请求</title>
+</head>
+<body>
+<form method="post" action="{% url 'get' %}">
+    {% csrf_token %}
+    <header>
+        <div class="header-nav">
+            <div class="logo"><img src="{% static 'img/logo.png' %}"></div>
+            <div class="header-menu">
+                <div class="header-menu-title"><a href="{% url 'index' %}">返回主页</a></div>
+                <div class="header-menu-title"><a href="{% url 'post' %}">切换post</a></div>
+            </div>
+        </div>
+    </header>
+    <div class="title">
+        <ul>
+            <li style="list-style: none;"><a href= {% url 'get' %}>清空数据</a></li>
+            <li style="list-style: none;padding-right: 25px">
+                <button style="border-radius:400px;cursor:pointer;width:100px;height: 35px;float: right; border:1px darkturquoise;background:#5cb85c;color: snow " type="submit" value="">发送请求</button>
+            </li>
+        </ul>
+    </div>
+    <div class="botton">
+        <div class="body">
+            <div class="url_post">
+                <label class="name_data" style="color: #dc1414">(*)地址</label>
+                <div>
+                    <input class="url_input" type="get_url" name="get_url" style="background: gold;font-size: 20px" placeholder="{{ url }}" required="required" >
+                </div>
+                <label>header参数</label>
+                <div class="header_text">
+                    <textarea rows="3" type="get_header" name="get_header" style="color: darkred;font-size: 30px" placeholder="{{ header }}"></textarea>
+                </div>
+                <label>body参数</label>
+                <div class="body_text">
+                    <textarea rows="3" type="params" name="params" style="color: darkred;font-size: 30px" placeholder="{{body}}"></textarea>
+                </div>
+                <label>返回参数</label>
+                <div class="respnse">
+                    <textarea readonly="value">{{ respnse }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
